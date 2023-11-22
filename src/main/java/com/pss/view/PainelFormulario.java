@@ -3,6 +3,9 @@ package com.pss.view;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import com.pss.state.view.PainelFormularioState;
+
 import javax.swing.JComponent;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
@@ -23,9 +26,18 @@ public class PainelFormulario extends Painel {
     private JTextField campoSenha;
     private JTextField campoNome;
 
+    private JLabel labelSenhaAtual;
+    private JLabel labelNovaSenha;
+    private JLabel labelUsuario;
+    private JLabel labelSenha;
+    private JLabel labelNome;
+
     private JCheckBox checkBoxAdministrador;
 
     private JTextArea campoMensagem;
+
+    private JLabel labelMensagem;
+    private JScrollPane scrollMensagem;
 
     private JButton botaoRegistrar;
     private JButton botaoSalvar;
@@ -33,8 +45,9 @@ public class PainelFormulario extends Painel {
     private JButton botaoEntrar;
     private JButton botaoEnviar;
 
-    public PainelFormulario(Tela tela) {
+    public PainelFormulario(Tela tela, PainelFormularioState estado) {
         super(tela);
+        estado.setPainelFormulario(this);
 
         JPanel painelSuperior = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -50,12 +63,21 @@ public class PainelFormulario extends Painel {
         this.campoMensagem = new JTextArea(5, 20);
         this.checkBoxAdministrador = new JCheckBox("Administrador");
 
-        this.addCampo(painelSuperior, this.campoNome, "Nome:", gbc);
-        this.addCampo(painelSuperior, this.campoUsuario, "Usuário:", gbc);
-        this.addCampo(painelSuperior, this.campoSenha, "Senha:", gbc);
-        this.addCampo(painelSuperior, this.campoSenhaAtual, "Senha Atual:", gbc);
-        this.addCampo(painelSuperior, this.campoNovaSenha, "Nova Senha:", gbc);
-        this.addCampo(painelSuperior, new JScrollPane(this.campoMensagem), "Mensagem:", gbc);
+        this.labelNome = new JLabel("Nome:");
+        this.labelUsuario = new JLabel("Usuário:");
+        this.labelSenha = new JLabel("Senha:");
+        this.labelSenhaAtual = new JLabel("Senha Atual:");
+        this.labelNovaSenha = new JLabel("Nova Senha:");
+        this.labelMensagem = new JLabel("Mensagem:");
+
+        this.scrollMensagem = new JScrollPane(this.campoMensagem);
+
+        this.addCampo(painelSuperior, this.campoNome, labelNome, gbc);
+        this.addCampo(painelSuperior, this.campoUsuario, labelUsuario, gbc);
+        this.addCampo(painelSuperior, this.campoSenha, labelSenha, gbc);
+        this.addCampo(painelSuperior, this.campoSenhaAtual, labelSenhaAtual, gbc);
+        this.addCampo(painelSuperior, this.campoNovaSenha, labelNovaSenha, gbc);
+        this.addCampo(painelSuperior, this.scrollMensagem, labelMensagem, gbc);
 
         gbc.gridx = 1;
         gbc.gridy += 1;
@@ -79,12 +101,14 @@ public class PainelFormulario extends Painel {
 
         this.add(painelSuperior, BorderLayout.CENTER);
         this.add(painelInferior, BorderLayout.SOUTH);
+
+        estado.aplicarEstado();
     }
 
-    private void addCampo(JComponent destino, JComponent extra, String texto, GridBagConstraints gbc) {
+    private void addCampo(JComponent destino, JComponent extra, JLabel texto, GridBagConstraints gbc) {
         gbc.gridx = 0;
         gbc.gridy += 1;
-        destino.add(new JLabel(texto), gbc);
+        destino.add(texto, gbc);
 
         gbc.gridx = 1;
         destino.add(extra, gbc);
@@ -136,5 +160,33 @@ public class PainelFormulario extends Painel {
 
     public JCheckBox getCheckBoxAdministrador() {
         return this.checkBoxAdministrador;
+    }
+
+    public JLabel getLabelMensagem() {
+        return this.labelMensagem;
+    }
+
+    public JLabel getLabelNome() {
+        return this.labelNome;
+    }
+
+    public JLabel getLabelNovaSenha() {
+        return this.labelNovaSenha;
+    }
+
+    public JLabel getLabelSenha() {
+        return this.labelSenha;
+    }
+
+    public JLabel getLabelSenhaAtual() {
+        return this.labelSenhaAtual;
+    }
+
+    public JLabel getLabelUsuario() {
+        return this.labelUsuario;
+    }
+
+    public JScrollPane getScrollMensagem() {
+        return this.scrollMensagem;
     }
 }
