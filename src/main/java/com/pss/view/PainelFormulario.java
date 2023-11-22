@@ -35,8 +35,6 @@ public class PainelFormulario extends Painel {
 
     public PainelFormulario(Tela tela) {
         super(tela);
-        
-        this.setLayout(new BorderLayout());
 
         JPanel painelSuperior = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
