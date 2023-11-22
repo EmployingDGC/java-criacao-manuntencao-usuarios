@@ -89,4 +89,52 @@ public class PainelFormulario extends Painel {
         gbc.gridx = 1;
         destino.add(extra, gbc);
     }
+
+    public JTextField getCampoNome() {
+        return this.campoNome;
+    }
+
+    public JTextField getCampoUsuario() {
+        return this.campoUsuario;
+    }
+
+    public JTextField getCampoSenha() {
+        return this.campoSenha;
+    }
+    
+    public JTextField getCampoSenhaAtual() {
+        return this.campoSenhaAtual;
+    }
+
+    public JTextField getCampoNovaSenha() {
+        return this.campoNovaSenha;
+    }
+
+    public JTextArea getCampoMensagem() {
+        return this.campoMensagem;
+    }
+
+    public JButton getBotaoEntrar() {
+        return this.botaoEntrar;
+    }
+
+    public JButton getBotaoEnviar() {
+        return this.botaoEnviar;
+    }
+
+    public JButton getBotaoRegistrar() {
+        return this.botaoRegistrar;
+    }
+
+    public JButton getBotaoSalvar() {
+        return this.botaoSalvar;
+    }
+
+    public JButton getBotaoVoltar() {
+        return this.botaoVoltar;
+    }
+
+    public JCheckBox getCheckBoxAdministrador() {
+        return this.checkBoxAdministrador;
+    }
 }
