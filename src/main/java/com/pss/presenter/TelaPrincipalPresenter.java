@@ -1,21 +1,39 @@
 package com.pss.presenter;
 
+import com.pss.view.PainelManterUsuarios;
 import com.pss.view.PainelFormulario;
 import com.pss.view.Tela;
 
-import com.pss.state.view.PainelFormularioState;
-import com.pss.state.view.painel_formulario.PainelFormularioEntrarState;
+import com.pss.presenter.painel_formulario.PainelFormularioEntrarPresenter;
+import com.pss.presenter.painel_formulario.PainelFormularioRegistrarPresenter;
 
 public class TelaPrincipalPresenter {
     private Tela tela;
 
+    private PainelFormulario painelFormulario;
+    private PainelManterUsuarios painelManterUsuarios;
+
+    private PainelFormularioEntrarPresenter painelFormularioEntrarPresenter;
+    private PainelFormularioRegistrarPresenter painelFormularioRegistrarPresenter;
+
     public TelaPrincipalPresenter() {
         this.tela = new Tela();
 
-        PainelFormularioState estadoInicial = new PainelFormularioEntrarState();
+        this.painelFormulario = new PainelFormulario(this.tela);
         
-        PainelFormulario pf = new PainelFormulario(this.tela, estadoInicial);
+        this.painelFormularioEntrarPresenter = new PainelFormularioEntrarPresenter(this, this.painelFormulario);
+        this.painelFormularioRegistrarPresenter = new PainelFormularioRegistrarPresenter(this, this.painelFormulario);
 
-        this.tela.setPainelMeio(pf);
+        this.painelFormularioEntrarPresenter.aplicarEstado();
+
+        this.tela.setPainelMeio(this.painelFormulario);
+    }
+
+    public Tela getTela() {
+        return this.tela;
+    }
+
+    public void vaParaRegistrar() {
+        this.painelFormularioRegistrarPresenter.aplicarEstado();
     }
 }
