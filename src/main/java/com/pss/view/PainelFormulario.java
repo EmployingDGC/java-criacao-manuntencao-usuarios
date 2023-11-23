@@ -4,8 +4,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import com.pss.state.view.PainelFormularioState;
-
 import javax.swing.JComponent;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
@@ -45,9 +43,8 @@ public class PainelFormulario extends Painel {
     private JButton botaoEntrar;
     private JButton botaoEnviar;
 
-    public PainelFormulario(Tela tela, PainelFormularioState estado) {
+    public PainelFormulario(Tela tela) {
         super(tela);
-        estado.setPainelFormulario(this);
 
         JPanel painelSuperior = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -101,8 +98,6 @@ public class PainelFormulario extends Painel {
 
         this.add(painelSuperior, BorderLayout.CENTER);
         this.add(painelInferior, BorderLayout.SOUTH);
-
-        estado.aplicarEstado();
     }
 
     private void addCampo(JComponent destino, JComponent extra, JLabel texto, GridBagConstraints gbc) {
