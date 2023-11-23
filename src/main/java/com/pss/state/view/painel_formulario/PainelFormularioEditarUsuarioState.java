@@ -5,11 +5,15 @@ import com.pss.state.view.PainelFormularioState;
 import com.pss.view.PainelFormulario;
 
 public class PainelFormularioEditarUsuarioState extends PainelFormularioState {
+    public PainelFormularioEditarUsuarioState(PainelFormulario painel) {
+        super(painel);
+    }
+
     @Override
     public void aplicarEstado() {
         super.aplicarEstado();
 
-        PainelFormulario pf = this.getPainelFormulario();
+        PainelFormulario pf = this.getPainel();
 
         pf.getTela().setTitulo("Editar Usuário");
 

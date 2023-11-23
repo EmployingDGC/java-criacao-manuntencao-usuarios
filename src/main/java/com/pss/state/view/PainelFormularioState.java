@@ -3,49 +3,53 @@ package com.pss.state.view;
 import com.pss.view.PainelFormulario;
 
 public class PainelFormularioState {
-    private PainelFormulario painelFormulario;
+    private PainelFormulario painel;
+
+    public PainelFormularioState(PainelFormulario painel) {
+        this.painel = painel;
+    }
 
     public void aplicarEstado() {
-        this.painelFormulario.getTela().setTitulo(null);
+        this.painel.getTela().setTitulo(null);
 
-        this.painelFormulario.getCheckBoxAdministrador().setVisible(false);
+        this.painel.getCheckBoxAdministrador().setVisible(false);
         
-        this.painelFormulario.getScrollMensagem().setVisible(false);
-        this.painelFormulario.getLabelMensagem().setVisible(false);
-        this.painelFormulario.getCampoMensagem().setText(null);
+        this.painel.getScrollMensagem().setVisible(false);
+        this.painel.getLabelMensagem().setVisible(false);
+        this.painel.getCampoMensagem().setText(null);
         
-        this.painelFormulario.getCampoSenhaAtual().setVisible(false);
-        this.painelFormulario.getLabelSenhaAtual().setVisible(false);
-        this.painelFormulario.getCampoSenhaAtual().setText(null);
+        this.painel.getCampoSenhaAtual().setVisible(false);
+        this.painel.getLabelSenhaAtual().setVisible(false);
+        this.painel.getCampoSenhaAtual().setText(null);
         
-        this.painelFormulario.getCampoNovaSenha().setVisible(false);
-        this.painelFormulario.getLabelNovaSenha().setVisible(false);
-        this.painelFormulario.getCampoNovaSenha().setText(null);
+        this.painel.getCampoNovaSenha().setVisible(false);
+        this.painel.getLabelNovaSenha().setVisible(false);
+        this.painel.getCampoNovaSenha().setText(null);
         
-        this.painelFormulario.getCampoUsuario().setVisible(false);
-        this.painelFormulario.getLabelUsuario().setVisible(false);
-        this.painelFormulario.getCampoUsuario().setText(null);
+        this.painel.getCampoUsuario().setVisible(false);
+        this.painel.getLabelUsuario().setVisible(false);
+        this.painel.getCampoUsuario().setText(null);
         
-        this.painelFormulario.getCampoSenha().setVisible(false);
-        this.painelFormulario.getLabelSenha().setVisible(false);
-        this.painelFormulario.getCampoSenha().setText(null);
+        this.painel.getCampoSenha().setVisible(false);
+        this.painel.getLabelSenha().setVisible(false);
+        this.painel.getCampoSenha().setText(null);
         
-        this.painelFormulario.getCampoNome().setVisible(false);
-        this.painelFormulario.getLabelNome().setVisible(false);
-        this.painelFormulario.getCampoNome().setText(null);
+        this.painel.getCampoNome().setVisible(false);
+        this.painel.getLabelNome().setVisible(false);
+        this.painel.getCampoNome().setText(null);
         
-        this.painelFormulario.getBotaoRegistrar().setVisible(false);
-        this.painelFormulario.getBotaoEntrar().setVisible(false);
-        this.painelFormulario.getBotaoEnviar().setVisible(false);
-        this.painelFormulario.getBotaoSalvar().setVisible(false);
-        this.painelFormulario.getBotaoVoltar().setVisible(false);
+        this.painel.getBotaoRegistrar().setVisible(false);
+        this.painel.getBotaoEntrar().setVisible(false);
+        this.painel.getBotaoEnviar().setVisible(false);
+        this.painel.getBotaoSalvar().setVisible(false);
+        this.painel.getBotaoVoltar().setVisible(false);
     }
     
-    public PainelFormulario getPainelFormulario() {
-        return this.painelFormulario;
+    public PainelFormulario getPainel() {
+        return this.painel;
     }
 
-    public void setPainelFormulario(PainelFormulario painelFormulario) {
-        this.painelFormulario = painelFormulario;
+    public void setPainel(PainelFormulario painel) {
+        this.painel = painel;
     }
 }
