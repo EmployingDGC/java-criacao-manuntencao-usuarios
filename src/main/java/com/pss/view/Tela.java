@@ -8,8 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import com.pss.state.view.painel_formulario.PainelFormularioEnviarMensagemState; // temporario
-
 public class Tela extends JFrame {
     private JPanel painelMeio;
     private JLabel titulo;
@@ -35,8 +33,6 @@ public class Tela extends JFrame {
         this.add(painelInferior, BorderLayout.SOUTH);
 
         this.setPainelMeio(new JPanel());
-
-        this.setPainelMeio(new PainelFormulario(this, new PainelFormularioEnviarMensagemState())); // temporário
 
         this.setVisible(true);
     }
