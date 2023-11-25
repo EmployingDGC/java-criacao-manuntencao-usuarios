@@ -21,12 +21,20 @@ public class TelaPrincipalPresenter {
 
         this.painelFormulario = new PainelFormulario(this.tela);
         
-        this.painelFormularioEntrarPresenter = new PainelFormularioEntrarPresenter(this, this.painelFormulario);
-        this.painelFormularioRegistrarPresenter = new PainelFormularioRegistrarPresenter(this, this.painelFormulario);
+        this.painelFormularioEntrarPresenter = new PainelFormularioEntrarPresenter(this);
+        this.painelFormularioRegistrarPresenter = new PainelFormularioRegistrarPresenter(this);
 
         this.painelFormularioEntrarPresenter.aplicarEstado();
 
         this.tela.setPainelMeio(this.painelFormulario);
+    }
+
+    public PainelFormulario getPainelFormulario() {
+        return this.painelFormulario;
+    }
+
+    public PainelManterUsuarios getPainelManterUsuarios() {
+        return this.painelManterUsuarios;
     }
 
     public Tela getTela() {
@@ -35,5 +43,9 @@ public class TelaPrincipalPresenter {
 
     public void vaParaRegistrar() {
         this.painelFormularioRegistrarPresenter.aplicarEstado();
+    }
+
+    public void vaParaEntrar() {
+        this.painelFormularioEntrarPresenter.aplicarEstado();
     }
 }
