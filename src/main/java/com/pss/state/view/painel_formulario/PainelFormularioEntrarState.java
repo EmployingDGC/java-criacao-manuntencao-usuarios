@@ -2,6 +2,8 @@ package com.pss.state.view.painel_formulario;
 
 import java.awt.event.ActionListener;
 
+import com.pss.presenter.TelaPrincipalPresenter;
+
 import com.pss.state.view.PainelFormularioState;
 
 import com.pss.view.PainelFormulario;
@@ -10,8 +12,8 @@ public class PainelFormularioEntrarState extends PainelFormularioState {
     private ActionListener acaoDoBotaoRegistrar;
     private ActionListener acaoDoBotaoEntrar;
 
-    public PainelFormularioEntrarState(PainelFormulario painel) {
-        super(painel);
+    public PainelFormularioEntrarState(TelaPrincipalPresenter telaPrincipal) {
+        super(telaPrincipal.getPainelFormulario());
     }
 
     @Override
@@ -45,7 +47,7 @@ public class PainelFormularioEntrarState extends PainelFormularioState {
 
     public void setAcaoDoBotaoEntrar(ActionListener acao) {
         if (this.acaoDoBotaoEntrar != null) {
-            this.getPainel().getBotaoRegistrar().removeActionListener(this.acaoDoBotaoEntrar);
+            this.getPainel().getBotaoEntrar().removeActionListener(this.acaoDoBotaoEntrar);
         }
 
         this.getPainel().getBotaoEntrar().addActionListener(acao);
