@@ -3,39 +3,50 @@ package com.pss.presenter.painel_formulario;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import com.pss.view.PainelFormulario;
 import com.pss.presenter.PainelFormularioPresenter;
 import com.pss.presenter.TelaPrincipalPresenter;
+
 import com.pss.state.view.painel_formulario.PainelFormularioRegistrarState;
 
 public class PainelFormularioRegistrarPresenter extends PainelFormularioPresenter {
     private ActionListener acaoDoBotaoRegistrar;
     private ActionListener acaoDoBotaoEntrar;
 
-    public PainelFormularioRegistrarPresenter(TelaPrincipalPresenter telaPresenter, PainelFormulario painel) {
-        super(telaPresenter, painel, new PainelFormularioRegistrarState(painel));
+    public PainelFormularioRegistrarPresenter(TelaPrincipalPresenter telaPresenter) {
+        super(telaPresenter, new PainelFormularioRegistrarState(telaPresenter));
+
+        PainelFormularioRegistrarPresenter thisObject = this;
 
         this.acaoDoBotaoRegistrar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Botão Registrar - Painel Registrar");
+                System.out.println("Registrou");
             }
         };
 
         this.acaoDoBotaoEntrar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Botão Entrar - Painel Registrar");
+                thisObject.sairPainel();
+                thisObject.getTelaPresenter().vaParaEntrar();
             }
         };
     }
 
-    public void aplicarEstado() {
-        PainelFormularioRegistrarState estado = (PainelFormularioRegistrarState) this.getEstado();
-        
-        estado.setAcaoDoBotaoRegistrar(this.acaoDoBotaoRegistrar);
-        estado.setAcaoDoBotaoEntrar(this.acaoDoBotaoEntrar);
+    @Override
+    public PainelFormularioRegistrarState getEstado() {
+        return (PainelFormularioRegistrarState) super.getEstado();
+    }
 
-        estado.aplicarEstado();
+    public void aplicarEstado() {
+        this.getEstado().setAcaoDoBotaoRegistrar(this.acaoDoBotaoRegistrar);
+        this.getEstado().setAcaoDoBotaoEntrar(this.acaoDoBotaoEntrar);
+
+        this.getEstado().aplicarEstado();
+    }
+
+    private void sairPainel() {
+        this.getEstado().setAcaoDoBotaoRegistrar(null);
+        this.getEstado().setAcaoDoBotaoEntrar(null);
     }
 }
