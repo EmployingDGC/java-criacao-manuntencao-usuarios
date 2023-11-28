@@ -20,25 +20,31 @@ public class PainelFormularioState {
         this.painel.getCheckBoxAdministrador().setVisible(false);
         
         this.painel.getScrollMensagem().setVisible(false);
+        this.painel.getCampoMensagem().setEditable(true);
         this.painel.getLabelMensagem().setVisible(false);
         this.painel.getCampoMensagem().setText(null);
         
+        this.painel.getCampoSenhaAtual().setEditable(true);
         this.painel.getCampoSenhaAtual().setVisible(false);
         this.painel.getLabelSenhaAtual().setVisible(false);
         this.painel.getCampoSenhaAtual().setText(null);
         
+        this.painel.getCampoNovaSenha().setEditable(true);
         this.painel.getCampoNovaSenha().setVisible(false);
         this.painel.getLabelNovaSenha().setVisible(false);
         this.painel.getCampoNovaSenha().setText(null);
         
+        this.painel.getCampoUsuario().setEditable(true);
         this.painel.getCampoUsuario().setVisible(false);
         this.painel.getLabelUsuario().setVisible(false);
         this.painel.getCampoUsuario().setText(null);
         
+        this.painel.getCampoSenha().setEditable(true);
         this.painel.getCampoSenha().setVisible(false);
         this.painel.getLabelSenha().setVisible(false);
         this.painel.getCampoSenha().setText(null);
         
+        this.painel.getCampoNome().setEditable(true);
         this.painel.getCampoNome().setVisible(false);
         this.painel.getLabelNome().setVisible(false);
         this.painel.getCampoNome().setText(null);
