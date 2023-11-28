@@ -33,20 +33,20 @@ public class PainelFormularioEntrarPresenter extends PainelFormularioPresenter {
 
                 Tela t = thisObject.getTelaPresenter().getTela();
 
-                // thisObject.getTelaPresenter().setStateAdministrador();
+                thisObject.getTelaPresenter().setStateAdministrador();
 
-                // t.setUsuarioInfo("Fulano de Tal (Administrador)");
-                // t.getBotaoNotificaoes().setText("1");
-                // t.getBotaoSolicitacoes().setText("1");
-
-                // thisObject.getTelaPresenter().vaParaMenuAdministrador();
-
-                thisObject.getTelaPresenter().setStateUsuario();
-
-                t.setUsuarioInfo("Fulano de Tal (Usuário)");
+                t.setUsuarioInfo("Fulano de Tal (Administrador)");
                 t.getBotaoNotificaoes().setText("1");
+                t.getBotaoSolicitacoes().setText("1");
 
-                thisObject.getTelaPresenter().vaParaMenuUsuario();
+                thisObject.getTelaPresenter().vaParaMenuAdministrador();
+
+                // thisObject.getTelaPresenter().setStateUsuario();
+
+                // t.setUsuarioInfo("Fulano de Tal (Usuário)");
+                // t.getBotaoNotificaoes().setText("1");
+
+                // thisObject.getTelaPresenter().vaParaMenuUsuario();
             }
         };
     }

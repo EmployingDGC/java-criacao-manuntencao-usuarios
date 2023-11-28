@@ -4,7 +4,7 @@ import com.pss.view.PainelManterUsuarios;
 import com.pss.view.PainelFormulario;
 import com.pss.view.PainelMenu;
 import com.pss.view.Tela;
-
+import com.pss.presenter.painel_formulario.PainelFormularioEditarAdmPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioEditarUsuarioPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioRegistrarPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioEntrarPresenter;
@@ -24,6 +24,7 @@ public class TelaPrincipalPresenter {
     private PainelMenu painelMenu;
 
     private PainelFormularioEditarUsuarioPresenter painelFormularioEditarUsuarioPresenter;
+    private PainelFormularioEditarAdmPresenter painelFormularioEditarAdmPresenter;
     private PainelFormularioRegistrarPresenter painelFormularioRegistrarPresenter;
     private PainelFormularioEntrarPresenter painelFormularioEntrarPresenter;
 
@@ -42,6 +43,7 @@ public class TelaPrincipalPresenter {
         this.painelMenu = new PainelMenu(this);
         
         this.painelFormularioEditarUsuarioPresenter = new PainelFormularioEditarUsuarioPresenter(this);
+        this.painelFormularioEditarAdmPresenter = new PainelFormularioEditarAdmPresenter(this);
         this.painelFormularioRegistrarPresenter = new PainelFormularioRegistrarPresenter(this);
         this.painelFormularioEntrarPresenter = new PainelFormularioEntrarPresenter(this);
 
@@ -115,6 +117,16 @@ public class TelaPrincipalPresenter {
     
     public void vaParaEditarUsuario() {
         this.painelFormularioEditarUsuarioPresenter.aplicarEstado();
+        this.revalidarTela();
+    }
+    
+    public void vaParaManterUsuario() {
+        // this..aplicarEstado();
+        this.revalidarTela();
+    }
+    
+    public void vaParaEditarAdministrador() {
+        this.painelFormularioEditarAdmPresenter.aplicarEstado();
         this.revalidarTela();
     }
 }

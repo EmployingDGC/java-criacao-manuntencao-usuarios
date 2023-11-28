@@ -17,6 +17,7 @@ public class PainelFormularioState {
     public void aplicarEstado() {
         this.painel.getTelaPresenter().getTela().setTitulo(null);
 
+        this.painel.getCheckBoxAdministrador().setSelected(false);
         this.painel.getCheckBoxAdministrador().setVisible(false);
         
         this.painel.getScrollMensagem().setVisible(false);

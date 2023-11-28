@@ -22,7 +22,7 @@ public class PainelMenuAdmPresenter extends PainelMenuPresenter {
             public void actionPerformed(ActionEvent e) {
                 thisObject.sairPainel();
                 System.out.println("Manter Usuário (ADM)");
-                thisObject.getTelaPresenter().vaParaMenuAdministrador();
+                thisObject.getTelaPresenter().vaParaManterUsuario();
             }
         };
     
@@ -31,7 +31,7 @@ public class PainelMenuAdmPresenter extends PainelMenuPresenter {
             public void actionPerformed(ActionEvent e) {
                 thisObject.sairPainel();
                 System.out.println("Alterando Senha (ADM)");
-                thisObject.getTelaPresenter().vaParaMenuAdministrador();
+                thisObject.getTelaPresenter().vaParaEditarAdministrador();
             }
         };
     }
