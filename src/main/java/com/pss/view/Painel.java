@@ -4,16 +4,18 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-public class Painel extends JPanel {
-    private Tela tela;
+import com.pss.presenter.TelaPrincipalPresenter;
 
-    public Painel(Tela tela) {
-        this.tela = tela;
+public class Painel extends JPanel {
+    private TelaPrincipalPresenter telaPresenter;
+
+    public Painel(TelaPrincipalPresenter telaPresenter) {
+        this.telaPresenter = telaPresenter;
         
         this.setLayout(new BorderLayout());
     }
 
-    public Tela getTela() {
-        return tela;
+    public TelaPrincipalPresenter getTelaPresenter() {
+        return this.telaPresenter;
     }
 }

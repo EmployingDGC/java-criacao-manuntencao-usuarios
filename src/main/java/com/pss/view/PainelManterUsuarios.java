@@ -15,11 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import com.pss.presenter.TelaPrincipalPresenter;
+
 public class PainelManterUsuarios extends Painel {
     private DefaultTableModel modeloTabela;
 
-    public PainelManterUsuarios(Tela tela) {
-        super(tela);
+    public PainelManterUsuarios(TelaPrincipalPresenter telaPresenter) {
+        super(telaPresenter);
 
         JPanel parteSuperior = new JPanel(new BorderLayout());
 
@@ -76,7 +78,7 @@ public class PainelManterUsuarios extends Painel {
     }
 
     private void setColumnWidthPercentage(TableColumn column, int percentage) {
-        int width = (int) (this.getTela().getWidth() * (percentage / 100.0));
+        int width = (int) (this.getTelaPresenter().getTela().getWidth() * (percentage / 100.0));
         column.setPreferredWidth(width);
         column.setMaxWidth(width);
         column.setMinWidth(width);

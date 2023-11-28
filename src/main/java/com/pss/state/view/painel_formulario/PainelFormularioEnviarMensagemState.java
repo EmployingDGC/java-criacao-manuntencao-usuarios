@@ -1,12 +1,14 @@
 package com.pss.state.view.painel_formulario;
 
+import com.pss.presenter.TelaPrincipalPresenter;
+
 import com.pss.state.view.PainelFormularioState;
 
 import com.pss.view.PainelFormulario;
 
 public class PainelFormularioEnviarMensagemState extends PainelFormularioState{
-    public PainelFormularioEnviarMensagemState(PainelFormulario painel) {
-        super(painel);
+    public PainelFormularioEnviarMensagemState(TelaPrincipalPresenter telaPresenter) {
+        super(telaPresenter);
     }
 
     @Override
@@ -15,7 +17,7 @@ public class PainelFormularioEnviarMensagemState extends PainelFormularioState{
 
         PainelFormulario pf = this.getPainel();
 
-        pf.getTela().setTitulo("Enviar Mensagem");
+        pf.getTelaPresenter().getTela().setTitulo("Enviar Mensagem");
 
         pf.getScrollMensagem().setVisible(true);
 

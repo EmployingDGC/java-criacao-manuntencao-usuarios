@@ -7,6 +7,7 @@ import com.pss.presenter.PainelFormularioPresenter;
 import com.pss.presenter.TelaPrincipalPresenter;
 
 import com.pss.state.view.painel_formulario.PainelFormularioEntrarState;
+import com.pss.view.Tela;
 
 public class PainelFormularioEntrarPresenter extends PainelFormularioPresenter {
     private ActionListener acaoDoBotaoRegistrar;
@@ -28,7 +29,24 @@ public class PainelFormularioEntrarPresenter extends PainelFormularioPresenter {
         this.acaoDoBotaoEntrar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Entrou");
+                thisObject.sairPainel();
+
+                Tela t = thisObject.getTelaPresenter().getTela();
+
+                // thisObject.getTelaPresenter().setStateAdministrador();
+
+                // t.setUsuarioInfo("Fulano de Tal (Administrador)");
+                // t.getBotaoNotificaoes().setText("1");
+                // t.getBotaoSolicitacoes().setText("1");
+
+                // thisObject.getTelaPresenter().vaParaMenuAdministrador();
+
+                thisObject.getTelaPresenter().setStateUsuario();
+
+                t.setUsuarioInfo("Fulano de Tal (Usuário)");
+                t.getBotaoNotificaoes().setText("1");
+
+                thisObject.getTelaPresenter().vaParaMenuUsuario();
             }
         };
     }
@@ -43,6 +61,8 @@ public class PainelFormularioEntrarPresenter extends PainelFormularioPresenter {
         this.getEstado().setAcaoDoBotaoEntrar(this.acaoDoBotaoEntrar);
 
         this.getEstado().aplicarEstado();
+
+        this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
     private void sairPainel() {

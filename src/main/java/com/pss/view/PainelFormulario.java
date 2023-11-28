@@ -17,6 +17,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Insets;
 
+import com.pss.presenter.TelaPrincipalPresenter;
+
 public class PainelFormulario extends Painel {
     private JTextField campoSenhaAtual;
     private JTextField campoNovaSenha;
@@ -26,6 +28,7 @@ public class PainelFormulario extends Painel {
 
     private JLabel labelSenhaAtual;
     private JLabel labelNovaSenha;
+    private JLabel labelMensagem;
     private JLabel labelUsuario;
     private JLabel labelSenha;
     private JLabel labelNome;
@@ -34,7 +37,6 @@ public class PainelFormulario extends Painel {
 
     private JTextArea campoMensagem;
 
-    private JLabel labelMensagem;
     private JScrollPane scrollMensagem;
 
     private JButton botaoRegistrar;
@@ -43,8 +45,8 @@ public class PainelFormulario extends Painel {
     private JButton botaoEntrar;
     private JButton botaoEnviar;
 
-    public PainelFormulario(Tela tela) {
-        super(tela);
+    public PainelFormulario(TelaPrincipalPresenter telaPresenter) {
+        super(telaPresenter);
 
         JPanel painelSuperior = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

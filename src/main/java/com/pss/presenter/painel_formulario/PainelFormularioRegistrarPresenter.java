@@ -20,6 +20,8 @@ public class PainelFormularioRegistrarPresenter extends PainelFormularioPresente
         this.acaoDoBotaoRegistrar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                thisObject.sairPainel();
+                thisObject.getTelaPresenter().vaParaEntrar();
                 System.out.println("Registrou");
             }
         };
@@ -43,6 +45,8 @@ public class PainelFormularioRegistrarPresenter extends PainelFormularioPresente
         this.getEstado().setAcaoDoBotaoEntrar(this.acaoDoBotaoEntrar);
 
         this.getEstado().aplicarEstado();
+
+        this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
     private void sairPainel() {

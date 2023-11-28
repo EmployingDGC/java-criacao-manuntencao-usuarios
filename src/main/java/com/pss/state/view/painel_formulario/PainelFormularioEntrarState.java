@@ -12,17 +12,21 @@ public class PainelFormularioEntrarState extends PainelFormularioState {
     private ActionListener acaoDoBotaoRegistrar;
     private ActionListener acaoDoBotaoEntrar;
 
-    public PainelFormularioEntrarState(TelaPrincipalPresenter telaPrincipal) {
-        super(telaPrincipal.getPainelFormulario());
+    public PainelFormularioEntrarState(TelaPrincipalPresenter telaPresenter) {
+        super(telaPresenter);
     }
 
     @Override
     public void aplicarEstado() {
         super.aplicarEstado();
 
+        TelaPrincipalPresenter tp = this.getTelaPresenter();
+
+        tp.getTela().setPainelMeio(tp.getPainelFormulario());
+
         PainelFormulario pf = this.getPainel();
 
-        pf.getTela().setTitulo("Entrar");
+        pf.getTelaPresenter().getTela().setTitulo("Entrar");
 
         pf.getCampoUsuario().setVisible(true);
         pf.getCampoSenha().setVisible(true);

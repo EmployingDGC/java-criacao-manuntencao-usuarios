@@ -13,7 +13,7 @@ public class PainelFormularioRegistrarState extends PainelFormularioState {
     private ActionListener acaoDoBotaoEntrar;
 
     public PainelFormularioRegistrarState(TelaPrincipalPresenter telaPresenter) {
-        super(telaPresenter.getPainelFormulario());
+        super(telaPresenter);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class PainelFormularioRegistrarState extends PainelFormularioState {
 
         PainelFormulario pf = this.getPainel();
 
-        pf.getTela().setTitulo("Registrar");
+        pf.getTelaPresenter().getTela().setTitulo("Registrar");
 
         pf.getCampoUsuario().setVisible(true);
         pf.getCampoSenha().setVisible(true);

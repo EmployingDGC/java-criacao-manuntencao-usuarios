@@ -1,12 +1,14 @@
 package com.pss.state.view.painel_formulario;
 
+import com.pss.presenter.TelaPrincipalPresenter;
+
 import com.pss.state.view.PainelFormularioState;
 
 import com.pss.view.PainelFormulario;
 
-public class PainelFormularioEditarUsuarioAdmState extends PainelFormularioState {
-    public PainelFormularioEditarUsuarioAdmState(PainelFormulario painel) {
-        super(painel);
+public class PainelFormularioEditarAdmState extends PainelFormularioState {
+    public PainelFormularioEditarAdmState(TelaPrincipalPresenter telaPresenter) {
+        super(telaPresenter);
     }
 
     @Override
@@ -15,7 +17,7 @@ public class PainelFormularioEditarUsuarioAdmState extends PainelFormularioState
 
         PainelFormulario pf = this.getPainel();
 
-        pf.getTela().setTitulo("Editar Usuário");
+        pf.getTelaPresenter().getTela().setTitulo("Editar Usuário");
 
         pf.getCampoUsuario().setVisible(true);
         pf.getCampoSenha().setVisible(true);

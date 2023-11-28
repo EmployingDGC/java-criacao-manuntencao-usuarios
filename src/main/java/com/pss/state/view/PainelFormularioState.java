@@ -1,16 +1,21 @@
 package com.pss.state.view;
 
+import com.pss.presenter.TelaPrincipalPresenter;
+
 import com.pss.view.PainelFormulario;
 
 public class PainelFormularioState {
+    private TelaPrincipalPresenter telaPresenter;
+
     private PainelFormulario painel;
 
-    public PainelFormularioState(PainelFormulario painel) {
-        this.painel = painel;
+    public PainelFormularioState(TelaPrincipalPresenter telaPresenter) {
+        this.telaPresenter = telaPresenter;
+        this.painel = telaPresenter.getPainelFormulario();
     }
 
     public void aplicarEstado() {
-        this.painel.getTela().setTitulo(null);
+        this.painel.getTelaPresenter().getTela().setTitulo(null);
 
         this.painel.getCheckBoxAdministrador().setVisible(false);
         
@@ -43,6 +48,10 @@ public class PainelFormularioState {
         this.painel.getBotaoEnviar().setVisible(false);
         this.painel.getBotaoSalvar().setVisible(false);
         this.painel.getBotaoVoltar().setVisible(false);
+    }
+
+    public TelaPrincipalPresenter getTelaPresenter() {
+        return this.telaPresenter;
     }
     
     public PainelFormulario getPainel() {
