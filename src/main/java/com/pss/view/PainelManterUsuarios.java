@@ -20,17 +20,25 @@ import com.pss.presenter.TelaPrincipalPresenter;
 public class PainelManterUsuarios extends Painel {
     private DefaultTableModel modeloTabela;
 
+    private JTextField campoPesquisa;
+
+    private JButton botaoPesquisar;
+    private JButton botaoNotificar;
+    private JButton botaoExcluir;
+    private JButton botaoVoltar;
+    private JButton botaoEditar;
+
     public PainelManterUsuarios(TelaPrincipalPresenter telaPresenter) {
         super(telaPresenter);
 
         JPanel parteSuperior = new JPanel(new BorderLayout());
 
-        JTextField campoPesquisa = new JTextField(20);
-        JButton botaoPesquisar = new JButton("Pesquisar");
+        this.campoPesquisa = new JTextField(20);
+        this.botaoPesquisar = new JButton("Pesquisar");
 
         JPanel painelPesquisa = new JPanel();
-        painelPesquisa.add(campoPesquisa);
-        painelPesquisa.add(botaoPesquisar);
+        painelPesquisa.add(this.campoPesquisa);
+        painelPesquisa.add(this.botaoPesquisar);
 
         String[] colunas = {"Nome", "Data de Cadastro", "Enviadas", "Lidas"};
 
@@ -63,15 +71,15 @@ public class PainelManterUsuarios extends Painel {
 
         JPanel parteInferior = new JPanel(new FlowLayout());
 
-        JButton botaoEditar = new JButton("Editar");
-        JButton botaoVoltar = new JButton("Voltar");
-        JButton botaoExcluir = new JButton("Excluir");
-        JButton botaoNotificar = new JButton("Notificar");
+        this.botaoEditar = new JButton("Editar");
+        this.botaoVoltar = new JButton("Voltar");
+        this.botaoExcluir = new JButton("Excluir");
+        this.botaoNotificar = new JButton("Notificar");
 
-        parteInferior.add(botaoEditar);
-        parteInferior.add(botaoVoltar);
-        parteInferior.add(botaoExcluir);
-        parteInferior.add(botaoNotificar);
+        parteInferior.add(this.botaoEditar);
+        parteInferior.add(this.botaoVoltar);
+        parteInferior.add(this.botaoExcluir);
+        parteInferior.add(this.botaoNotificar);
 
         this.add(parteSuperior, BorderLayout.CENTER);
         this.add(parteInferior, BorderLayout.SOUTH);
@@ -98,5 +106,29 @@ public class PainelManterUsuarios extends Painel {
 
     public DefaultTableModel getModeloTabela() {
         return this.modeloTabela;
+    }
+
+    public JTextField getCampoPesquisa() {
+        return this.campoPesquisa;
+    }
+    
+    public JButton getBotaoPesquisar() {
+        return this.botaoPesquisar;
+    }
+
+    public JButton getBotaoNotificar() {
+        return this.botaoNotificar;
+    }
+
+    public JButton getBotaoExcluir() {
+        return this.botaoExcluir;
+    }
+
+    public JButton getBotaoVoltar() {
+        return this.botaoVoltar;
+    }
+
+    public JButton getBotaoEditar() {
+        return this.botaoEditar;
     }
 }

@@ -4,8 +4,10 @@ import com.pss.view.PainelManterUsuarios;
 import com.pss.view.PainelFormulario;
 import com.pss.view.PainelMenu;
 import com.pss.view.Tela;
-import com.pss.presenter.painel_formulario.PainelFormularioEditarAdmPresenter;
+
 import com.pss.presenter.painel_formulario.PainelFormularioEditarUsuarioPresenter;
+import com.pss.presenter.painel_manter_usuarios.PainelManterUsuariosAdmPresenter;
+import com.pss.presenter.painel_formulario.PainelFormularioEditarAdmPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioRegistrarPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioEntrarPresenter;
 
@@ -28,6 +30,7 @@ public class TelaPrincipalPresenter {
     private PainelFormularioRegistrarPresenter painelFormularioRegistrarPresenter;
     private PainelFormularioEntrarPresenter painelFormularioEntrarPresenter;
 
+    private PainelManterUsuariosAdmPresenter painelManterUsuariosAdmPresenter;
     private PainelMenuUsuarioPresenter painelMenuUsuarioPresenter;
     private PainelMenuAdmPresenter painelMenuAdmPresenter;
 
@@ -47,6 +50,7 @@ public class TelaPrincipalPresenter {
         this.painelFormularioRegistrarPresenter = new PainelFormularioRegistrarPresenter(this);
         this.painelFormularioEntrarPresenter = new PainelFormularioEntrarPresenter(this);
 
+        this.painelManterUsuariosAdmPresenter = new PainelManterUsuariosAdmPresenter(this);
         this.painelMenuUsuarioPresenter = new PainelMenuUsuarioPresenter(this);
         this.painelMenuAdmPresenter = new PainelMenuAdmPresenter(this);
 
@@ -121,7 +125,7 @@ public class TelaPrincipalPresenter {
     }
     
     public void vaParaManterUsuario() {
-        // this..aplicarEstado();
+        this.painelManterUsuariosAdmPresenter.aplicarEstado();
         this.revalidarTela();
     }
     
