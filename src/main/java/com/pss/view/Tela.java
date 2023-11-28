@@ -68,8 +68,6 @@ public class Tela extends JFrame {
 
         this.painelMeio = painelMeio;
         this.add(painelMeio, BorderLayout.CENTER);
-
-        this.revalidate();
     }
 
     public JButton getBotaoSolicitacoes() {
@@ -82,13 +80,9 @@ public class Tela extends JFrame {
 
     public void setTitulo(String titulo) {
         this.titulo.setText(titulo);
-
-        this.revalidate();
     }
 
     public void setUsuarioInfo(String info) {
         this.usuarioInfoLabel.setText(info);
-
-        this.revalidate();
     }
 }

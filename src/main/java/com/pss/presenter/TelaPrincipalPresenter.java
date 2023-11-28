@@ -5,8 +5,9 @@ import com.pss.view.PainelFormulario;
 import com.pss.view.PainelMenu;
 import com.pss.view.Tela;
 
-import com.pss.presenter.painel_formulario.PainelFormularioEntrarPresenter;
+import com.pss.presenter.painel_formulario.PainelFormularioEditarUsuarioPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioRegistrarPresenter;
+import com.pss.presenter.painel_formulario.PainelFormularioEntrarPresenter;
 
 import com.pss.presenter.painel_menu.PainelMenuUsuarioPresenter;
 import com.pss.presenter.painel_menu.PainelMenuAdmPresenter;
@@ -22,6 +23,7 @@ public class TelaPrincipalPresenter {
     private PainelFormulario painelFormulario;
     private PainelMenu painelMenu;
 
+    private PainelFormularioEditarUsuarioPresenter painelFormularioEditarUsuarioPresenter;
     private PainelFormularioRegistrarPresenter painelFormularioRegistrarPresenter;
     private PainelFormularioEntrarPresenter painelFormularioEntrarPresenter;
 
@@ -39,6 +41,7 @@ public class TelaPrincipalPresenter {
         this.painelFormulario = new PainelFormulario(this);
         this.painelMenu = new PainelMenu(this);
         
+        this.painelFormularioEditarUsuarioPresenter = new PainelFormularioEditarUsuarioPresenter(this);
         this.painelFormularioRegistrarPresenter = new PainelFormularioRegistrarPresenter(this);
         this.painelFormularioEntrarPresenter = new PainelFormularioEntrarPresenter(this);
 
@@ -52,6 +55,11 @@ public class TelaPrincipalPresenter {
         this.setStateSemUsuario();
         
         this.vaParaEntrar();
+    }
+
+    public void revalidarTela() {
+        this.tela.revalidate();
+        this.tela.repaint();
     }
 
     public PainelManterUsuarios getPainelManterUsuarios() {
@@ -72,29 +80,41 @@ public class TelaPrincipalPresenter {
 
     public void setStateAdministrador() {
         this.telaAdministradorState.aplicarEstado();
+        this.revalidarTela();
     }
     
     public void setStateUsuario() {
         this.telaUsuarioState.aplicarEstado();
+        this.revalidarTela();
     }
 
     public void setStateSemUsuario() {
         this.telaSemUsuarioState.aplicarEstado();
+        this.revalidarTela();
     }
 
     public void vaParaRegistrar() {
         this.painelFormularioRegistrarPresenter.aplicarEstado();
+        this.revalidarTela();
     }
 
     public void vaParaEntrar() {
         this.painelFormularioEntrarPresenter.aplicarEstado();
+        this.revalidarTela();
     }
 
     public void vaParaMenuAdministrador() {
         this.painelMenuAdmPresenter.aplicarEstado();
+        this.revalidarTela();
     }
 
     public void vaParaMenuUsuario() {
         this.painelMenuUsuarioPresenter.aplicarEstado();
+        this.revalidarTela();
+    }
+    
+    public void vaParaEditarUsuario() {
+        this.painelFormularioEditarUsuarioPresenter.aplicarEstado();
+        this.revalidarTela();
     }
 }

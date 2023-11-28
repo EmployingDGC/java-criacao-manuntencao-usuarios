@@ -1,5 +1,7 @@
 package com.pss.state.view.painel_formulario;
 
+import java.awt.event.ActionListener;
+
 import com.pss.presenter.TelaPrincipalPresenter;
 
 import com.pss.state.view.PainelFormularioState;
@@ -7,6 +9,9 @@ import com.pss.state.view.PainelFormularioState;
 import com.pss.view.PainelFormulario;
 
 public class PainelFormularioEditarUsuarioState extends PainelFormularioState {
+    private ActionListener acaoDoBotaoSalvar;
+    private ActionListener acaoDoBotaoVoltar;
+
     public PainelFormularioEditarUsuarioState(TelaPrincipalPresenter telaPresenter) {
         super(telaPresenter);
     }
@@ -33,7 +38,23 @@ public class PainelFormularioEditarUsuarioState extends PainelFormularioState {
 
         pf.getBotaoSalvar().setVisible(true);
         pf.getBotaoVoltar().setVisible(true);
+    }
+    
+    public void setAcaoDoBotaoSalvar(ActionListener acao) {
+        if (this.acaoDoBotaoSalvar != null) {
+            this.getPainel().getBotaoSalvar().removeActionListener(this.acaoDoBotaoSalvar);
+        }
 
-        pf.revalidate();
+        this.getPainel().getBotaoSalvar().addActionListener(acao);
+        this.acaoDoBotaoSalvar = acao;
+    }
+
+    public void setAcaoDoBotaoVoltar(ActionListener acao) {
+        if (this.acaoDoBotaoVoltar != null) {
+            this.getPainel().getBotaoVoltar().removeActionListener(this.acaoDoBotaoVoltar);
+        }
+
+        this.getPainel().getBotaoVoltar().addActionListener(acao);
+        this.acaoDoBotaoVoltar = acao;
     }
 }

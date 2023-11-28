@@ -33,7 +33,5 @@ public class PainelFormularioEnviarMensagemState extends PainelFormularioState{
 
         pf.getBotaoEnviar().setVisible(true);
         pf.getBotaoVoltar().setVisible(true);
-
-        pf.revalidate();
     }
 }

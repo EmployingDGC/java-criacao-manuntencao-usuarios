@@ -21,8 +21,6 @@ public class PainelMenuUsuarioState extends PainelMenuState {
         PainelMenu pm = this.getPainel();
 
         pm.getBotaoAlterarSenha().setVisible(true);
-
-        pm.revalidate();
     }
     
     public void setAcaoDoBotaoAlterarSenha(ActionListener acao) {

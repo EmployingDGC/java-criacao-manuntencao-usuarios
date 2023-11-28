@@ -20,8 +20,7 @@ public class PainelMenuUsuarioPresenter extends PainelMenuPresenter {
             @Override
             public void actionPerformed(ActionEvent e) {
                 thisObject.sairPainel();
-                System.out.println("Alterando Senha (Usuário)");
-                thisObject.getTelaPresenter().vaParaMenuUsuario();
+                thisObject.getTelaPresenter().vaParaEditarUsuario();
             }
         };
     }

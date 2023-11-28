@@ -31,7 +31,5 @@ public class PainelFormularioEditarAdmState extends PainelFormularioState {
         pf.getBotaoVoltar().setVisible(true);
 
         pf.getCheckBoxAdministrador().setVisible(true);
-
-        pf.revalidate();
     }
 }

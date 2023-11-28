@@ -23,8 +23,6 @@ public class PainelMenuAdmState extends PainelMenuState {
 
         pm.getBotaoManterUsuario().setVisible(true);
         pm.getBotaoAlterarSenha().setVisible(true);
-
-        pm.revalidate();
     }
 
     public void setAcaoDoBotaoManterUsuario(ActionListener acao) {

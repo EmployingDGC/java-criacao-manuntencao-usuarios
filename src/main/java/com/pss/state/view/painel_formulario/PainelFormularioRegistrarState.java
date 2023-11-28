@@ -34,8 +34,6 @@ public class PainelFormularioRegistrarState extends PainelFormularioState {
 
         pf.getBotaoRegistrar().setVisible(true);
         pf.getBotaoEntrar().setVisible(true);
-
-        pf.revalidate();
     }
     
     public void setAcaoDoBotaoRegistrar(ActionListener acao) {

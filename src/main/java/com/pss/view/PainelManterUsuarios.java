@@ -88,16 +88,12 @@ public class PainelManterUsuarios extends Painel {
         Object[] novaLinha = {nome, dataDeCadastro, mensagensEnviadas, mensagensLidas};
 
         this.modeloTabela.addRow(novaLinha);
-
-        this.revalidate();
     }
 
     public void removerTodasAsLinhas() {
         while (this.modeloTabela.getRowCount() > 0) {
             this.modeloTabela.removeRow(0);
         }
-
-        this.revalidate();
     }
 
     public DefaultTableModel getModeloTabela() {
