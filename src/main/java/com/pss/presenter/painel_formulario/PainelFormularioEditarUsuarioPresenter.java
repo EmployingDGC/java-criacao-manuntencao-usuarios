@@ -21,7 +21,7 @@ public class PainelFormularioEditarUsuarioPresenter extends PainelFormularioPres
             @Override
             public void actionPerformed(ActionEvent e) {
                 thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaEntrar();
+                thisObject.getTelaPresenter().vaParaMenuUsuario();
             }
         };
 
@@ -29,7 +29,7 @@ public class PainelFormularioEditarUsuarioPresenter extends PainelFormularioPres
             @Override
             public void actionPerformed(ActionEvent e) {
                 thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaEntrar();
+                thisObject.getTelaPresenter().vaParaMenuUsuario();
             }
         };
     }
