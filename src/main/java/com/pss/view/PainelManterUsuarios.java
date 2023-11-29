@@ -19,8 +19,10 @@ import com.pss.presenter.TelaPrincipalPresenter;
 
 public class PainelManterUsuarios extends Painel {
     private DefaultTableModel modeloTabela;
-
+    
     private JTextField campoPesquisa;
+    
+    private JTable tabela;
 
     private JButton botaoPesquisar;
     private JButton botaoNotificar;
@@ -49,22 +51,24 @@ public class PainelManterUsuarios extends Painel {
             }
         };
 
-        JTable tabela = new JTable(modeloTabela);
-        tabela.getTableHeader().setReorderingAllowed(false);
+        this.tabela = new JTable(modeloTabela);
+        this.tabela.getTableHeader().setReorderingAllowed(false);
         
-        TableColumnModel colunasModel = tabela.getColumnModel();
+        TableColumnModel colunasModel = this.tabela.getColumnModel();
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         
-        setColumnWidthPercentage(colunasModel.getColumn(0), 60);
-        setColumnWidthPercentage(colunasModel.getColumn(1), 20);
-        setColumnWidthPercentage(colunasModel.getColumn(2), 10);
+        int[][] colunasPercentual = {{0, 60}, {1, 20}, {2, 10}, {3, 10}};
+
+        for (int[] i : colunasPercentual) {
+            setColumnWidthPercentage(colunasModel.getColumn(i[0]), i[1]);
+        }
 
         for (int i = 1; i < 4.; i += 1) {
             colunasModel.getColumn(i).setCellRenderer(centerRenderer);
         }
 
-        JScrollPane scrollPane = new JScrollPane(tabela);
+        JScrollPane scrollPane = new JScrollPane(this.tabela);
 
         parteSuperior.add(painelPesquisa, BorderLayout.NORTH);
         parteSuperior.add(scrollPane, BorderLayout.CENTER);
@@ -86,7 +90,7 @@ public class PainelManterUsuarios extends Painel {
     }
 
     private void setColumnWidthPercentage(TableColumn column, int percentage) {
-        int width = (int) (this.getTelaPresenter().getTela().getWidth() * (percentage / 100.0));
+        int width = (int) (this.getTelaPresenter().getTela().getWidth() * (percentage / 100.0) - 8);
         column.setPreferredWidth(width);
         column.setMaxWidth(width);
         column.setMinWidth(width);
@@ -104,8 +108,20 @@ public class PainelManterUsuarios extends Painel {
         }
     }
 
+    public void limparSelecaoDasLinhas() {
+        this.tabela.clearSelection();
+    }
+
+    public int[] getIdsLinhasSelecionadas() {
+        return this.tabela.getSelectedRows();
+    }
+
     public DefaultTableModel getModeloTabela() {
         return this.modeloTabela;
+    }
+
+    public JTable getTabela() {
+        return this.tabela;
     }
 
     public JTextField getCampoPesquisa() {
