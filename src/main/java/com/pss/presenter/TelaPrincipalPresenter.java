@@ -119,7 +119,7 @@ public class TelaPrincipalPresenter {
         this.revalidarTela();
     }
     
-    public void vaParaEditarUsuario() {
+    public void vaParaEditarUsuario(int[] ids) {
         this.painelFormularioEditarUsuarioPresenter.aplicarEstado();
         this.revalidarTela();
     }
@@ -129,7 +129,7 @@ public class TelaPrincipalPresenter {
         this.revalidarTela();
     }
     
-    public void vaParaEditarAdministrador() {
+    public void vaParaEditarAdministrador(int[] ids) {
         this.painelFormularioEditarAdmPresenter.aplicarEstado();
         this.revalidarTela();
     }

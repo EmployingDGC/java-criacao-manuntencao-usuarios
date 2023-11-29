@@ -29,7 +29,7 @@ public class PainelMenuAdmPresenter extends PainelMenuPresenter {
             @Override
             public void actionPerformed(ActionEvent e) {
                 thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaEditarAdministrador();
+                thisObject.getTelaPresenter().vaParaEditarAdministrador(null);
             }
         };
     }
