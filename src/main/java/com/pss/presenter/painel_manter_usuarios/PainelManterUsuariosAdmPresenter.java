@@ -47,8 +47,20 @@ public class PainelManterUsuariosAdmPresenter extends PainelManterUsuariosPresen
         this.acaoDoBotaoEditar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int[] ids = thisObject.getPainel().getIdsLinhasSelecionadas();
+
+                if (ids.length == 0) {
+                    System.out.println("Nenhuma linha da tabela selecionada");
+                    return;
+                }
+
+                if (ids.length > 1) {
+                    System.out.println("Favor selecionar apenas um usuário");
+                    return;
+                }
+
                 thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaMenuAdministrador();
+                thisObject.getTelaPresenter().vaParaEditarAdministrador(ids);
             }
         };
 
@@ -84,5 +96,7 @@ public class PainelManterUsuariosAdmPresenter extends PainelManterUsuariosPresen
         this.getEstado().setAcaoDoBotaoExcluir(null);
         this.getEstado().setAcaoDoBotaoEditar(null);
         this.getEstado().setAcaoDoBotaoVoltar(null);
+        
+        this.getPainel().limparSelecaoDasLinhas();
     }
 }
