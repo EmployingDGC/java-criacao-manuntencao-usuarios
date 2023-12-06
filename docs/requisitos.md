@@ -41,6 +41,7 @@
     - Editar (usuário)
     - Notificar
   - Manter Usuário
+  - Notificações
 
 - Dimensões das Telas
   - Tamanhos
