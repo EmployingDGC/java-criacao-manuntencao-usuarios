@@ -1,16 +1,17 @@
 package com.pss.model;
 
 import com.pss.model.usuario.AdministradorModel;
+import com.pss.model.usuario.UsuarioModel;
 
 public class MensagemModel {
     private AdministradorModel remetente;
-    private PessoaModel destinatario;
+    private UsuarioModel destinatario;
 
     private String mensagem;
 
     private boolean lida;
 
-    private MensagemModel(String mensagem, AdministradorModel remetente, PessoaModel destinatario) {
+    private MensagemModel(String mensagem, AdministradorModel remetente, UsuarioModel destinatario) {
         this.destinatario = destinatario;
         this.remetente = remetente;
 
@@ -23,7 +24,7 @@ public class MensagemModel {
         return this.mensagem;
     }
 
-    public PessoaModel getDestinatario() {
+    public UsuarioModel getDestinatario() {
         return this.destinatario;
     }
 
