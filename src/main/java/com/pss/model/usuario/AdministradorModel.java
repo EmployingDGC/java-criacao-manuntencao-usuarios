@@ -14,4 +14,9 @@ public class AdministradorModel extends UsuarioModel {
     public List<MensagemModel> getMensagensEnviadas() {
         return this.mensagensEnviadas;
     }
+
+    @Override
+    public boolean isAdministrador() {
+        return true;
+    }
 }

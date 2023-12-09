@@ -1,5 +1,6 @@
 package com.pss.model.usuario;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.pss.model.MensagemModel;
@@ -10,11 +11,16 @@ public class UsuarioModel extends PessoaModel {
     private String senha;
     private String nome;
 
+    private boolean cadastroAprovado;
+
+    private LocalDateTime dataCadastro;
+    private LocalDateTime dataAprovacaoCadastro;
+
     private List<MensagemModel> mensagensRecebidas;
 
     public UsuarioModel(String nome, String usuario, String senha) {
         super(nome);
-        this.usuario = usuario;
+        this.usuario = usuario.trim().toLowerCase();
         this.senha = senha;
     }
 
@@ -40,5 +46,30 @@ public class UsuarioModel extends PessoaModel {
 
     public List<MensagemModel> getMensagensRecebidas() {
         return this.mensagensRecebidas;
+    }
+
+    public boolean isCadastroAprovado() {
+        return this.cadastroAprovado;
+    }
+
+    public void aprovarCadastro() {
+        if (this.cadastroAprovado) {
+            return;
+        }
+
+        this.cadastroAprovado = true;
+        this.dataAprovacaoCadastro = LocalDateTime.now();
+    }
+
+    public boolean isAdministrador() {
+        return false;
+    }
+
+    public LocalDateTime getDataAprovacaoCadastro() {
+        return this.dataAprovacaoCadastro;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return this.dataCadastro;
     }
 }
