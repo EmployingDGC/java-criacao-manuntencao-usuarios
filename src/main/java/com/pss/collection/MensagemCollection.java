@@ -6,19 +6,13 @@ import java.util.List;
 import com.pss.model.MensagemModel;
 
 public class MensagemCollection {
-    private List<MensagemModel> mensagens;
+    private List<MensagemModel> mensagens = new ArrayList<MensagemModel>();
 
     private static MensagemCollection instancia;
 
-    private MensagemCollection() {
-        this.mensagens = new ArrayList<MensagemModel>();
-    }
+    private MensagemCollection() {}
 
     public static MensagemCollection getInstancia() {
-        if (instancia == null) {
-            instancia = new MensagemCollection();
-        }
-
         return instancia;
     }
 
