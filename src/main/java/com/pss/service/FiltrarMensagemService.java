@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
 import com.pss.model.MensagemModel;
 import com.pss.model.usuario.UsuarioModel;
 
-public class FiltrarMensagem {
-    static public List<MensagemModel> filtrarMensagem(List<MensagemModel> mensagens, String conteudo) {
+public class FiltrarMensagemService {
+    static public List<MensagemModel> porConteudo(List<MensagemModel> mensagens, String conteudo) {
         List<MensagemModel> mensagensFiltradas = new ArrayList<MensagemModel>();
 
         String regex = String.format(".*%s.*", conteudo);
@@ -23,7 +23,7 @@ public class FiltrarMensagem {
         return mensagensFiltradas;
     }
 
-    static public List<MensagemModel> filtrarMensagemPorRemetente(List<MensagemModel> mensagens, String remetente) {
+    static public List<MensagemModel> porRemetente(List<MensagemModel> mensagens, String remetente) {
         List<MensagemModel> mensagensFiltradas = new ArrayList<MensagemModel>();
 
         String regex = String.format(".*%s.*", remetente);
@@ -44,7 +44,7 @@ public class FiltrarMensagem {
         return mensagensFiltradas;
     }
 
-    static public List<MensagemModel> filtrarMensagemPorRemetente(List<MensagemModel> mensagens, UsuarioModel remetente) {
+    static public List<MensagemModel> porRemetente(List<MensagemModel> mensagens, UsuarioModel remetente) {
         List<MensagemModel> mensagensFiltradas = new ArrayList<MensagemModel>();
 
         for (MensagemModel msg : mensagens) {
@@ -56,7 +56,7 @@ public class FiltrarMensagem {
         return mensagensFiltradas;
     }
 
-    static public List<MensagemModel> filtrarMensagemPorDestinatario(List<MensagemModel> mensagens, String destinatario) {
+    static public List<MensagemModel> porDestinatario(List<MensagemModel> mensagens, String destinatario) {
         List<MensagemModel> mensagensFiltradas = new ArrayList<MensagemModel>();
 
         String regex = String.format(".*%s.*", destinatario);
@@ -77,7 +77,7 @@ public class FiltrarMensagem {
         return mensagensFiltradas;
     }
 
-    static public List<MensagemModel> filtrarMensagemPorDestinatario(List<MensagemModel> mensagens, UsuarioModel destinatario) {
+    static public List<MensagemModel> porDestinatario(List<MensagemModel> mensagens, UsuarioModel destinatario) {
         List<MensagemModel> mensagensFiltradas = new ArrayList<MensagemModel>();
 
         for (MensagemModel msg : mensagens) {
@@ -89,11 +89,11 @@ public class FiltrarMensagem {
         return mensagensFiltradas;
     }
 
-    static public List<MensagemModel> filtrarMensagemLida(List<MensagemModel> mensagens) {
-        return filtrarMensagemLida(mensagens, false);
+    static public List<MensagemModel> lida(List<MensagemModel> mensagens) {
+        return lida(mensagens, false);
     }
 
-    static public List<MensagemModel> filtrarMensagemLida(List<MensagemModel> mensagens, boolean inverter) {
+    static public List<MensagemModel> lida(List<MensagemModel> mensagens, boolean inverter) {
         List<MensagemModel> mensagensFiltradas = new ArrayList<MensagemModel>();
 
         boolean foiLida = true;
