@@ -3,6 +3,8 @@ package com.pss.presenter.painel_manter_usuarios;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import com.pss.collection.UsuarioCollection;
+import com.pss.model.usuario.UsuarioModel;
 import com.pss.presenter.PainelManterUsuariosPresenter;
 import com.pss.presenter.TelaPrincipalPresenter;
 
@@ -59,8 +61,10 @@ public class PainelManterUsuariosAdmPresenter extends PainelManterUsuariosPresen
                     return;
                 }
 
+                UsuarioModel u = UsuarioCollection.getInstancia().getUsuarios().get(0);
+
                 thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaEditarAdministrador(ids);
+                thisObject.getTelaPresenter().vaParaEditarAdministrador(u);
             }
         };
 
@@ -90,7 +94,7 @@ public class PainelManterUsuariosAdmPresenter extends PainelManterUsuariosPresen
         this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
-    private void sairPainel() {
+    public void sairPainel() {
         this.getEstado().setAcaoDoBotaoPesquisar(null);
         this.getEstado().setAcaoDoBotaoNotificar(null);
         this.getEstado().setAcaoDoBotaoExcluir(null);

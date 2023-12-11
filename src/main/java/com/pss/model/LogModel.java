@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import com.pss.model.usuario.UsuarioModel;
-
 public class LogModel {
     static private int contagem = 0;
 
@@ -17,9 +15,9 @@ public class LogModel {
     private LocalDate data;
     private LocalTime hora;
 
-    private UsuarioModel usuario;
+    private String usuario;
 
-    public LogModel(String operacao, String nome, UsuarioModel usuario) {
+    public LogModel(String operacao, String nome, String usuario) {
         this.nome = nome;
         this.operacao = operacao;
         this.usuario = usuario;
@@ -43,7 +41,7 @@ public class LogModel {
         return this.operacao;
     }
 
-    public UsuarioModel getUsuario() {
+    public String getUsuario() {
         return this.usuario;
     }
 
@@ -66,19 +64,19 @@ public class LogModel {
             this.nome,
             this.data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
             this.hora.format(DateTimeFormatter.ofPattern("HH:mm:ss")),
-            this.usuario.getUsuario()
+            this.usuario
         );
     }
 
     public String toStringFalha(String mensagem) {
         return String.format(
-            "Falha: %s ao realizar a operação %s do contato %s, (%s, %s, %s)",
+            "Falha: \"%s\" ao realizar a operação \"%s\" do contato \"%s\", (%s, %s, %s)",
             mensagem,
             this.operacao,
             this.nome,
             this.data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
             this.hora.format(DateTimeFormatter.ofPattern("HH:mm:ss")),
-            this.usuario.getUsuario()
+            this.usuario
         );
     }
 }

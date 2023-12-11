@@ -29,7 +29,7 @@ public class PainelMenuAdmPresenter extends PainelMenuPresenter {
             @Override
             public void actionPerformed(ActionEvent e) {
                 thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaEditarAdministrador(null);
+                thisObject.getTelaPresenter().vaParaEditarAdministrador(thisObject.getTelaPresenter().getUsuarioLogado());
             }
         };
     }
@@ -48,7 +48,7 @@ public class PainelMenuAdmPresenter extends PainelMenuPresenter {
         this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
-    private void sairPainel() {
+    public void sairPainel() {
         this.getEstado().setAcaoDoBotaoManterUsuario(null);
         this.getEstado().setAcaoDoBotaoAlterarSenha(null);
     }

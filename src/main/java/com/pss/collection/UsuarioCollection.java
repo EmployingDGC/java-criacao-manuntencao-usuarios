@@ -6,11 +6,13 @@ import java.util.List;
 import com.pss.model.usuario.UsuarioModel;
 
 public class UsuarioCollection {
-    private List<UsuarioModel> usuarios = new ArrayList<UsuarioModel>();
+    private List<UsuarioModel> usuarios;
 
-    private static UsuarioCollection instancia;
+    private static UsuarioCollection instancia = new UsuarioCollection();
 
-    private UsuarioCollection() {}
+    private UsuarioCollection() {
+        this.usuarios = new ArrayList<UsuarioModel>();
+    }
 
     public static UsuarioCollection getInstancia() {
         return instancia;
@@ -20,7 +22,7 @@ public class UsuarioCollection {
         return this.usuarios;
     }
 
-    public void add(UsuarioModel mensagem) {
-        this.usuarios.add(mensagem);
+    public void add(UsuarioModel usuario) {
+        this.usuarios.add(usuario);
     }
 }

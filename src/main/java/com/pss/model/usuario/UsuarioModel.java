@@ -1,15 +1,17 @@
 package com.pss.model.usuario;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.pss.error.usuario.NomeDeUsuarioObrigatorioError;
+import com.pss.error.usuario.SenhaDoUsuarioObrigatorioError;
 import com.pss.model.MensagemModel;
 import com.pss.model.PessoaModel;
 
 public class UsuarioModel extends PessoaModel {
     private String usuario;
     private String senha;
-    private String nome;
 
     private boolean cadastroAprovado;
 
@@ -20,8 +22,10 @@ public class UsuarioModel extends PessoaModel {
 
     public UsuarioModel(String nome, String usuario, String senha) {
         super(nome);
-        this.usuario = usuario.trim().toLowerCase();
-        this.senha = senha;
+        this.setUsuario(usuario);
+        this.setSenha(senha);
+
+        this.mensagensRecebidas = new ArrayList<MensagemModel>();
     }
 
     public String getUsuario() {
@@ -38,10 +42,6 @@ public class UsuarioModel extends PessoaModel {
         }
 
         return this.senha;
-    }
-
-    public String getNome() {
-        return this.nome;
     }
 
     public List<MensagemModel> getMensagensRecebidas() {
@@ -71,5 +71,41 @@ public class UsuarioModel extends PessoaModel {
 
     public LocalDateTime getDataCadastro() {
         return this.dataCadastro;
+    }
+
+    private void setUsuario(String usuario) {
+        if (usuario == null) {
+            throw new NomeDeUsuarioObrigatorioError("Nome de usuário não pode ser nulo");
+        }
+
+        usuario = usuario.trim().toLowerCase();
+
+        if (usuario.isEmpty()) {
+            throw new NomeDeUsuarioObrigatorioError("Nome de usuário não pode ser vazio");
+        }
+        
+        if (usuario.length() < 4) {
+            throw new NomeDeUsuarioObrigatorioError("Nome de usuário deve possuir no mínimo 4 caracteres");
+        }
+
+        this.usuario = usuario;
+    }
+
+    public void setSenha(String senha) {
+        if (senha == null) {
+            throw new SenhaDoUsuarioObrigatorioError("Senha de usuário não pode ser nula");
+        }
+
+        senha = senha.trim().toLowerCase();
+
+        if (senha.isEmpty()) {
+            throw new SenhaDoUsuarioObrigatorioError("Senha de usuário não pode ser vazia");
+        }
+        
+        if (senha.length() < 8) {
+            throw new SenhaDoUsuarioObrigatorioError("Senha de usuário deve possuir no mínimo 8 caracteres");
+        }
+
+        this.senha = senha;
     }
 }

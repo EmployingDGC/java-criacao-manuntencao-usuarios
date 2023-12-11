@@ -38,7 +38,7 @@ public class PainelMenuUsuarioPresenter extends PainelMenuPresenter {
         this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
-    private void sairPainel() {
+    public void sairPainel() {
         this.getEstado().setAcaoDoBotaoAlterarSenha(null);
     }
 }

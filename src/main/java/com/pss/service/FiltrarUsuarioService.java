@@ -27,4 +27,14 @@ public class FiltrarUsuarioService {
     static public List<AdministradorModel> usuarioAdministrador() {
         return tipo(AdministradorModel.class);
     }
+
+    static public UsuarioModel usuarioESenha(String usuario, String senha) {
+        for (UsuarioModel u : UsuarioCollection.getInstancia().getUsuarios()) {
+            if (u.getUsuario().equals(usuario) && u.getSenha().equals(senha)) {
+                return u;
+            }
+        }
+
+        return null;
+    }
 }

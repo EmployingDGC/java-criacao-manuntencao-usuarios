@@ -48,7 +48,7 @@ public class PainelFormularioEditarUsuarioPresenter extends PainelFormularioPres
         this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
-    private void sairPainel() {
+    public void sairPainel() {
         this.getEstado().setAcaoDoBotaoSalvar(null);
         this.getEstado().setAcaoDoBotaoVoltar(null);
     }

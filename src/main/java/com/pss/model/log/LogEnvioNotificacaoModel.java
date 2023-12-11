@@ -1,10 +1,9 @@
 package com.pss.model.log;
 
 import com.pss.model.LogModel;
-import com.pss.model.usuario.UsuarioModel;
 
 public class LogEnvioNotificacaoModel extends LogModel {
-    public LogEnvioNotificacaoModel(UsuarioModel usuario) {
+    public LogEnvioNotificacaoModel(String usuario) {
         super("Envio", "Notificação", usuario);
     }
 }

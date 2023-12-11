@@ -9,7 +9,7 @@ import com.pss.model.usuario.AdministradorModel;
 import com.pss.model.usuario.UsuarioModel;
 
 public class EnviarMensagemService {
-    static public void solicitacaoCadastro(String nome, String usuario, String senha) {
+    static public UsuarioModel solicitacaoCadastro(String nome, String usuario, String senha) {
         UsuarioModel u = new UsuarioModel(nome, usuario, senha);
         UsuarioCollection.getInstancia().add(u);
 
@@ -23,13 +23,17 @@ public class EnviarMensagemService {
         MensagemCollection.getInstancia().add(m);
 
         m.enviar();
+
+        return u;
     }
 
-    static public void comum(UsuarioModel remetente, UsuarioModel destinatario, String mensagem) {
+    static public MensagemModel comum(UsuarioModel remetente, UsuarioModel destinatario, String mensagem) {
         MensagemModel m = new MensagemModel(mensagem, remetente, destinatario, TipoMensagemModel.COMUM);
 
         MensagemCollection.getInstancia().add(m);
 
         m.enviar();
+
+        return m;
     }
 }
