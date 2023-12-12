@@ -22,7 +22,6 @@ public class PainelFormularioRegistrarPresenter extends PainelFormularioPresente
         this.acaoDoBotaoRegistrar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                thisObject.sairPainel();
                 PainelFormularioCommand.registrarUsuario(thisObject);
             }
         };

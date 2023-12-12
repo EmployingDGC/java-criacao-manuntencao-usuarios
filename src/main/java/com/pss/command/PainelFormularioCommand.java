@@ -23,8 +23,8 @@ import com.pss.service.FiltrarUsuarioService;
 import com.pss.view.PainelFormulario;
 
 public class PainelFormularioCommand {
-    static public void registrarUsuario(PainelFormularioRegistrarPresenter painelPresenter) {
-        PainelFormulario painel = painelPresenter.getPainel();
+    static public void registrarUsuario(PainelFormularioRegistrarPresenter presenter) {
+        PainelFormulario painel = presenter.getPainel();
         
         String textoCampoNome = painel.getCampoNome().getText();
         String textoCampoUsuario = painel.getCampoUsuario().getText();
@@ -43,19 +43,32 @@ public class PainelFormularioCommand {
             }
 
             else {
-                u = EnviarMensagemService
-                    .solicitacaoCadastro(textoCampoNome, textoCampoUsuario, textoCampoSenha);
+                u = EnviarMensagemService.solicitacaoCadastro(textoCampoNome, textoCampoUsuario, textoCampoSenha);
             }
-
+            
             System.out.println(log.toStringSucesso());
-            painelPresenter.getTelaPresenter().vaParaEntrar();
+            JOptionPane.showConfirmDialog(
+                presenter.getTelaPresenter().getTela(),
+                String.format("%s, aguarde a confirmação de um administrador para conseguir entrar no sistema", u.getNome()),
+                "Novo cadastro realizado",
+                JOptionPane.DEFAULT_OPTION
+            );
+
+            presenter.getTelaPresenter().vaParaEntrar();
+            presenter.sairPainel();
         } catch (RuntimeException exp) {
             System.out.println(log.toStringFalha(exp.getMessage()));
+            JOptionPane.showConfirmDialog(
+                presenter.getTelaPresenter().getTela(),
+                exp.getMessage(),
+                "Erro ao cadastrar",
+                JOptionPane.DEFAULT_OPTION
+            );
         }
     }
 
-    static public void logarUsuario(PainelFormularioEntrarPresenter painelPresenter) {
-        PainelFormulario painel = painelPresenter.getPainel();
+    static public void logarUsuario(PainelFormularioEntrarPresenter presenter) {
+        PainelFormulario painel = presenter.getPainel();
 
         String textoCampoUsuario = painel.getCampoUsuario().getText();
         String textoCampoSenha = painel.getCampoSenha().getText();
@@ -64,26 +77,36 @@ public class PainelFormularioCommand {
 
         LogAutorizacaoUsuarioModel log = new LogAutorizacaoUsuarioModel(textoCampoUsuario);
 
+        String msgErro = "";
+
         if (u == null) {
-            System.out.println(log.toStringFalha("Usuário e/ou Senha incorreto(s)"));
+            msgErro = "Usuário e/ou Senha incorreto(s)";
+        } else if (!u.isCadastroAprovado()) {
+            msgErro = "Cadastro do usuário não aprovado";
+        }
+
+        if (!msgErro.isEmpty()) {
+            log.toStringFalha(msgErro);
+            JOptionPane.showConfirmDialog(
+                presenter.getTelaPresenter().getTela(),
+                msgErro,
+                String.format("Falha ao logar com usuário %s", textoCampoUsuario),
+                JOptionPane.DEFAULT_OPTION
+            );
+
             return;
         }
 
-        if (!u.isCadastroAprovado()) {
-            System.out.println(log.toStringFalha("Cadastro do usuário Não aprovado"));
-            return;
-        }
-
-        painelPresenter.getTelaPresenter().setUsuarioLogado(u);
+        presenter.getTelaPresenter().setUsuarioLogado(u);
         System.out.println(log.toStringSucesso());
     }
 
-    static public void salvarAlteracoesUsuario(PainelFormularioEditarAdmPresenter painelPresenter) {
-        UsuarioModel u = painelPresenter.getUsuario();
+    static public void salvarAlteracoesUsuario(PainelFormularioEditarAdmPresenter presenter) {
+        UsuarioModel u = presenter.getUsuario();
 
-        painelPresenter.getPainel().getCheckBoxAdministrador().setSelected(u.isAdministrador());
+        presenter.getPainel().getCheckBoxAdministrador().setSelected(u.isAdministrador());
 
-        boolean admChecked = painelPresenter.getPainel().getCheckBoxAdministrador().isSelected();
+        boolean admChecked = presenter.getPainel().getCheckBoxAdministrador().isSelected();
 
         String mensagemAdm;
 
@@ -96,7 +119,7 @@ public class PainelFormularioCommand {
         }
 
         int resposta = JOptionPane.showConfirmDialog(
-            painelPresenter.getTelaPresenter().getTela(),
+            presenter.getTelaPresenter().getTela(),
             String.format("Deseja confirmar as alterações para o usuário %s%s", u.getUsuario(), mensagemAdm),
             String.format("Editando usuário %s", u.getUsuario()),
             JOptionPane.YES_NO_OPTION
@@ -105,9 +128,9 @@ public class PainelFormularioCommand {
         LogAlteracaoUsuarioModel log = new LogAlteracaoUsuarioModel(u.getUsuario());
 
         if (resposta == JOptionPane.YES_OPTION) {
-            String novoUsuario = painelPresenter.getPainel().getCampoUsuario().getText();
-            String novaSenha = painelPresenter.getPainel().getCampoSenha().getText();
-            String novoNome = painelPresenter.getPainel().getCampoNome().getText();
+            String novoUsuario = presenter.getPainel().getCampoUsuario().getText();
+            String novaSenha = presenter.getPainel().getCampoSenha().getText();
+            String novoNome = presenter.getPainel().getCampoNome().getText();
 
             UsuarioModel uTmp;
 
@@ -129,19 +152,19 @@ public class PainelFormularioCommand {
             u.setSenha(novaSenha);
 
             JOptionPane.showConfirmDialog(
-                painelPresenter.getTelaPresenter().getTela(),
+                presenter.getTelaPresenter().getTela(),
                 String.format("As alterações para o usuário %s foram aplicadas", u.getUsuario()),
-                String.format("Edição confirmada", u.getUsuario()),
+                "Edição confirmada",
                 JOptionPane.DEFAULT_OPTION
             );
 
-            if (painelPresenter.getTelaPresenter().getUsuarioLogado().isAdministrador()) {
-                painelPresenter.getTelaPresenter().vaParaMenuAdministrador();
+            if (presenter.getTelaPresenter().getUsuarioLogado().isAdministrador()) {
+                presenter.getTelaPresenter().vaParaMenuAdministrador();
             } else {
-                painelPresenter.getTelaPresenter().vaParaMenuUsuario();
+                presenter.getTelaPresenter().vaParaMenuUsuario();
             }
 
-            painelPresenter.sairPainel();
+            presenter.sairPainel();
         }
     }
 }

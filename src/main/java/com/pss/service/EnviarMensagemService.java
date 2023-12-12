@@ -22,15 +22,20 @@ public class EnviarMensagemService {
 
         MensagemCollection.getInstancia().add(m);
 
+        adm.getMensagensRecebidas().add(m);
+
         m.enviar();
 
         return u;
     }
 
-    static public MensagemModel comum(UsuarioModel remetente, UsuarioModel destinatario, String mensagem) {
+    static public MensagemModel comum(AdministradorModel remetente, UsuarioModel destinatario, String mensagem) {
         MensagemModel m = new MensagemModel(mensagem, remetente, destinatario, TipoMensagemModel.COMUM);
 
         MensagemCollection.getInstancia().add(m);
+
+        remetente.getMensagensEnviadas().add(m);
+        destinatario.getMensagensRecebidas().add(m);
 
         m.enviar();
 

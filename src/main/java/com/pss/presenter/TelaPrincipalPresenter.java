@@ -7,6 +7,9 @@ import com.pss.view.Tela;
 
 import com.pss.presenter.painel_formulario.PainelFormularioEditarUsuarioPresenter;
 import com.pss.presenter.painel_manter_usuarios.PainelManterUsuariosAdmPresenter;
+
+import java.util.List;
+
 import com.pss.model.usuario.AdministradorModel;
 import com.pss.model.usuario.UsuarioModel;
 import com.pss.presenter.painel_formulario.PainelFormularioEditarAdmPresenter;
@@ -14,7 +17,6 @@ import com.pss.presenter.painel_formulario.PainelFormularioRegistrarPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioEntrarPresenter;
 
 import com.pss.presenter.painel_menu.PainelMenuUsuarioPresenter;
-import com.pss.service.FiltrarMensagemService;
 import com.pss.presenter.painel_menu.PainelMenuAdmPresenter;
 
 import com.pss.state.view.tela.TelaAdministradorState;
@@ -56,6 +58,7 @@ public class TelaPrincipalPresenter {
         this.painelFormularioEntrarPresenter = new PainelFormularioEntrarPresenter(this);
 
         this.painelManterUsuariosAdmPresenter = new PainelManterUsuariosAdmPresenter(this);
+        
         this.painelMenuUsuarioPresenter = new PainelMenuUsuarioPresenter(this);
         this.painelMenuAdmPresenter = new PainelMenuAdmPresenter(this);
 
@@ -129,8 +132,9 @@ public class TelaPrincipalPresenter {
         this.revalidarTela();
     }
     
-    public void vaParaManterUsuario() {
+    public void vaParaManterUsuario(List<UsuarioModel> usuarios) {
         this.painelManterUsuariosAdmPresenter.aplicarEstado();
+        this.painelManterUsuariosAdmPresenter.setUsuarios(usuarios);
         this.revalidarTela();
     }
     
@@ -148,10 +152,7 @@ public class TelaPrincipalPresenter {
         if (usuarioLogado.isAdministrador()) {
             this.setStateAdministrador();
             
-            int solicitacoes = FiltrarMensagemService.porRemetente(
-                ((AdministradorModel) usuarioLogado).getMensagensEnviadas(),
-                usuarioLogado
-            ).size();
+            int solicitacoes = ((AdministradorModel) usuarioLogado).getMensagensEnviadas().size();
             
             this.tela.setUsuarioInfo(String.format("%s (Administrador)", usuarioLogado.getUsuario()));
             this.tela.getBotaoSolicitacoes().setText(String.format("%d", solicitacoes));
@@ -165,7 +166,7 @@ public class TelaPrincipalPresenter {
             this.vaParaMenuUsuario();
         }
 
-        int notificacoes = FiltrarMensagemService.porRemetente(usuarioLogado.getMensagensRecebidas(), usuarioLogado).size();
+        int notificacoes = usuarioLogado.getMensagensRecebidas().size();
 
         this.tela.getBotaoNotificaoes().setText(String.format("%d", notificacoes));
 

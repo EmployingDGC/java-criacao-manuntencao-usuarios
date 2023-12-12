@@ -37,4 +37,16 @@ public class FiltrarUsuarioService {
 
         return null;
     }
+
+    static public List<UsuarioModel> usuario(String usuario) {
+        List<UsuarioModel> usuarios = new ArrayList<>();
+
+        for (UsuarioModel u : UsuarioCollection.getInstancia().getUsuarios()) {
+            if (u.getUsuario().equals(usuario)) {
+                usuarios.add(u);
+            }
+        }
+
+        return usuarios;
+    }
 }

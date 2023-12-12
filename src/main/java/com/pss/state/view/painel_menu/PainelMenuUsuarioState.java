@@ -9,6 +9,7 @@ import com.pss.view.PainelMenu;
 
 public class PainelMenuUsuarioState extends PainelMenuState {
     private ActionListener acaoDoBotaoAlterarSenha;
+    private ActionListener acaoDoBotaoSair;
 
     public PainelMenuUsuarioState(TelaPrincipalPresenter telaPresenter) {
         super(telaPresenter);
@@ -21,6 +22,7 @@ public class PainelMenuUsuarioState extends PainelMenuState {
         PainelMenu pm = this.getPainel();
 
         pm.getBotaoAlterarSenha().setVisible(true);
+        pm.getBotaoSair().setVisible(true);
     }
     
     public void setAcaoDoBotaoAlterarSenha(ActionListener acao) {
@@ -30,5 +32,14 @@ public class PainelMenuUsuarioState extends PainelMenuState {
 
         this.getPainel().getBotaoAlterarSenha().addActionListener(acao);
         this.acaoDoBotaoAlterarSenha = acao;
+    }
+    
+    public void setAcaoDoBotaoSair(ActionListener acao) {
+        if (this.acaoDoBotaoSair != null) {
+            this.getPainel().getBotaoSair().removeActionListener(this.acaoDoBotaoSair);
+        }
+
+        this.getPainel().getBotaoSair().addActionListener(acao);
+        this.acaoDoBotaoSair = acao;
     }
 }

@@ -8,8 +8,11 @@ import com.pss.error.usuario.NomeDeUsuarioObrigatorioError;
 import com.pss.error.usuario.SenhaDoUsuarioObrigatorioError;
 import com.pss.model.MensagemModel;
 import com.pss.model.PessoaModel;
+import com.pss.senha.validacao.ValidadorSenha;
 
 public class UsuarioModel extends PessoaModel {
+    static final private ValidadorSenha VALIDADOR_SENHA = new ValidadorSenha();
+
     private String usuario;
     private String senha;
 
@@ -25,6 +28,7 @@ public class UsuarioModel extends PessoaModel {
         this.setUsuario(usuario);
         this.setSenha(senha);
 
+        this.dataCadastro = LocalDateTime.now();
         this.mensagensRecebidas = new ArrayList<MensagemModel>();
     }
 
@@ -92,19 +96,23 @@ public class UsuarioModel extends PessoaModel {
     }
 
     public void setSenha(String senha) {
-        if (senha == null) {
-            throw new SenhaDoUsuarioObrigatorioError("Senha de usuário não pode ser nula");
+        if (UsuarioModel.VALIDADOR_SENHA.validar(senha).size() > 0) {
+            throw new SenhaDoUsuarioObrigatorioError("Senha de usuário não passou pelos tratadores do professor");
         }
 
-        senha = senha.trim().toLowerCase();
+        // if (senha == null) {
+        //     throw new SenhaDoUsuarioObrigatorioError("Senha de usuário não pode ser nula");
+        // }
 
-        if (senha.isEmpty()) {
-            throw new SenhaDoUsuarioObrigatorioError("Senha de usuário não pode ser vazia");
-        }
+        // senha = senha.trim().toLowerCase();
+
+        // if (senha.isEmpty()) {
+        //     throw new SenhaDoUsuarioObrigatorioError("Senha de usuário não pode ser vazia");
+        // }
         
-        if (senha.length() < 8) {
-            throw new SenhaDoUsuarioObrigatorioError("Senha de usuário deve possuir no mínimo 8 caracteres");
-        }
+        // if (senha.length() < 8) {
+        //     throw new SenhaDoUsuarioObrigatorioError("Senha de usuário deve possuir no mínimo 8 caracteres");
+        // }
 
         this.senha = senha;
     }

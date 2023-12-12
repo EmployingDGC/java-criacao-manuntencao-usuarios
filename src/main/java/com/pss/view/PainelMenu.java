@@ -12,6 +12,7 @@ import com.pss.presenter.TelaPrincipalPresenter;
 public class PainelMenu extends Painel {
     private JButton botaoManterUsuario;
     private JButton botaoAlterarSenha;
+    private JButton botaoSair;
     
     public PainelMenu(TelaPrincipalPresenter telaPresenter) {
         super(telaPresenter);
@@ -27,6 +28,9 @@ public class PainelMenu extends Painel {
         this.botaoAlterarSenha = new JButton("Alterar Senha");
         this.botaoAlterarSenha.setPreferredSize(tamanhoBotao);
 
+        this.botaoSair = new JButton("Sair");
+        this.botaoSair.setPreferredSize(tamanhoBotao);
+
         gbc.anchor = GridBagConstraints.LINE_END;
 
         gbc.gridx = 0;
@@ -36,6 +40,9 @@ public class PainelMenu extends Painel {
         
         gbc.gridy = 1;
         this.add(this.botaoManterUsuario, gbc);
+
+        gbc.gridy = 2;
+        this.add(this.botaoSair, gbc);
     }
 
     public JButton getBotaoManterUsuario() {
@@ -44,5 +51,9 @@ public class PainelMenu extends Painel {
 
     public JButton getBotaoAlterarSenha() {
         return this.botaoAlterarSenha;
+    }
+
+    public JButton getBotaoSair() {
+        return this.botaoSair;
     }
 }
