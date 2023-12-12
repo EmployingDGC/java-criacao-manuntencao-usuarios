@@ -3,6 +3,8 @@ package com.pss.presenter.painel_formulario;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import com.pss.command.PainelFormularioCommand;
+
 import com.pss.presenter.PainelFormularioPresenter;
 import com.pss.presenter.TelaPrincipalPresenter;
 
@@ -20,9 +22,7 @@ public class PainelFormularioRegistrarPresenter extends PainelFormularioPresente
         this.acaoDoBotaoRegistrar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaEntrar();
-                System.out.println("Registrou");
+                PainelFormularioCommand.registrarUsuario(thisObject);
             }
         };
 
@@ -49,7 +49,7 @@ public class PainelFormularioRegistrarPresenter extends PainelFormularioPresente
         this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
-    private void sairPainel() {
+    public void sairPainel() {
         this.getEstado().setAcaoDoBotaoRegistrar(null);
         this.getEstado().setAcaoDoBotaoEntrar(null);
     }

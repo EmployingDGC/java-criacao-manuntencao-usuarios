@@ -1,8 +1,11 @@
 package com.pss.presenter.painel_manter_usuarios;
 
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
+import com.pss.command.ManterUsuarioCommand;
+import com.pss.model.usuario.UsuarioModel;
 import com.pss.presenter.PainelManterUsuariosPresenter;
 import com.pss.presenter.TelaPrincipalPresenter;
 
@@ -14,6 +17,8 @@ public class PainelManterUsuariosAdmPresenter extends PainelManterUsuariosPresen
     private ActionListener acaoDoBotaoExcluir;
     private ActionListener acaoDoBotaoEditar;
     private ActionListener acaoDoBotaoVoltar;
+
+    private List<UsuarioModel> usuarios;
 
     public PainelManterUsuariosAdmPresenter(TelaPrincipalPresenter telaPresenter) {
         super(telaPresenter, new PainelManterUsuariosAdmState(telaPresenter));
@@ -39,28 +44,14 @@ public class PainelManterUsuariosAdmPresenter extends PainelManterUsuariosPresen
         this.acaoDoBotaoExcluir = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaMenuAdministrador();
+                ManterUsuarioCommand.excluirUsuario(thisObject);
             }
         };
 
         this.acaoDoBotaoEditar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int[] ids = thisObject.getPainel().getIdsLinhasSelecionadas();
-
-                if (ids.length == 0) {
-                    System.out.println("Nenhuma linha da tabela selecionada");
-                    return;
-                }
-
-                if (ids.length > 1) {
-                    System.out.println("Favor selecionar apenas um usuário");
-                    return;
-                }
-
-                thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaEditarAdministrador(ids);
+                ManterUsuarioCommand.editarUsuario(thisObject);
             }
         };
 
@@ -90,7 +81,15 @@ public class PainelManterUsuariosAdmPresenter extends PainelManterUsuariosPresen
         this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
-    private void sairPainel() {
+    public void setUsuarios(List<UsuarioModel> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<UsuarioModel> getUsuarios() {
+        return this.usuarios;
+    }
+
+    public void sairPainel() {
         this.getEstado().setAcaoDoBotaoPesquisar(null);
         this.getEstado().setAcaoDoBotaoNotificar(null);
         this.getEstado().setAcaoDoBotaoExcluir(null);

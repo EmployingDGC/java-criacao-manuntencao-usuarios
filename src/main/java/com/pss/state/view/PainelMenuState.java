@@ -18,6 +18,7 @@ public class PainelMenuState {
 
         this.painel.getBotaoManterUsuario().setVisible(false);
         this.painel.getBotaoAlterarSenha().setVisible(false);
+        this.painel.getBotaoSair().setVisible(false);
     }
 
     public TelaPrincipalPresenter getTelaPresenter() {

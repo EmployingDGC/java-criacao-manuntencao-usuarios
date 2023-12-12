@@ -7,6 +7,11 @@ import com.pss.view.Tela;
 
 import com.pss.presenter.painel_formulario.PainelFormularioEditarUsuarioPresenter;
 import com.pss.presenter.painel_manter_usuarios.PainelManterUsuariosAdmPresenter;
+
+import java.util.List;
+
+import com.pss.model.usuario.AdministradorModel;
+import com.pss.model.usuario.UsuarioModel;
 import com.pss.presenter.painel_formulario.PainelFormularioEditarAdmPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioRegistrarPresenter;
 import com.pss.presenter.painel_formulario.PainelFormularioEntrarPresenter;
@@ -38,6 +43,8 @@ public class TelaPrincipalPresenter {
     private TelaSemUsuarioState telaSemUsuarioState;
     private TelaUsuarioState telaUsuarioState;
 
+    private UsuarioModel usuarioLogado;
+
     public TelaPrincipalPresenter() {
         this.tela = new Tela();
 
@@ -51,6 +58,7 @@ public class TelaPrincipalPresenter {
         this.painelFormularioEntrarPresenter = new PainelFormularioEntrarPresenter(this);
 
         this.painelManterUsuariosAdmPresenter = new PainelManterUsuariosAdmPresenter(this);
+        
         this.painelMenuUsuarioPresenter = new PainelMenuUsuarioPresenter(this);
         this.painelMenuAdmPresenter = new PainelMenuAdmPresenter(this);
 
@@ -124,13 +132,44 @@ public class TelaPrincipalPresenter {
         this.revalidarTela();
     }
     
-    public void vaParaManterUsuario() {
+    public void vaParaManterUsuario(List<UsuarioModel> usuarios) {
         this.painelManterUsuariosAdmPresenter.aplicarEstado();
+        this.painelManterUsuariosAdmPresenter.setUsuarios(usuarios);
         this.revalidarTela();
     }
     
-    public void vaParaEditarAdministrador(int[] ids) {
+    public void vaParaEditarAdministrador(UsuarioModel u) {
         this.painelFormularioEditarAdmPresenter.aplicarEstado();
+        this.painelFormularioEditarAdmPresenter.setUsuario(u);
         this.revalidarTela();
+    }
+
+    public UsuarioModel getUsuarioLogado() {
+        return this.usuarioLogado;
+    }
+
+    public void setUsuarioLogado(UsuarioModel usuarioLogado) {
+        if (usuarioLogado.isAdministrador()) {
+            this.setStateAdministrador();
+            
+            int solicitacoes = ((AdministradorModel) usuarioLogado).getMensagensEnviadas().size();
+            
+            this.tela.setUsuarioInfo(String.format("%s (Administrador)", usuarioLogado.getUsuario()));
+            this.tela.getBotaoSolicitacoes().setText(String.format("%d", solicitacoes));
+            
+            this.vaParaMenuAdministrador();
+        } else {
+            this.setStateUsuario();
+            
+            this.tela.setUsuarioInfo(String.format("%s (Usuário)", usuarioLogado.getUsuario()));
+            
+            this.vaParaMenuUsuario();
+        }
+
+        int notificacoes = usuarioLogado.getMensagensRecebidas().size();
+
+        this.tela.getBotaoNotificaoes().setText(String.format("%d", notificacoes));
+
+        this.usuarioLogado = usuarioLogado;
     }
 }

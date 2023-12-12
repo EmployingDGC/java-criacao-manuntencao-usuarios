@@ -3,6 +3,8 @@ package com.pss.presenter.painel_formulario;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import com.pss.command.PainelFormularioCommand;
+import com.pss.model.usuario.UsuarioModel;
 import com.pss.presenter.PainelFormularioPresenter;
 import com.pss.presenter.TelaPrincipalPresenter;
 
@@ -12,6 +14,8 @@ public class PainelFormularioEditarAdmPresenter extends PainelFormularioPresente
     private ActionListener acaoDoBotaoSalvar;
     private ActionListener acaoDoBotaoVoltar;
 
+    private UsuarioModel usuario;
+
     public PainelFormularioEditarAdmPresenter(TelaPrincipalPresenter telaPresenter) {
         super(telaPresenter, new PainelFormularioEditarAdmState(telaPresenter));
 
@@ -20,8 +24,7 @@ public class PainelFormularioEditarAdmPresenter extends PainelFormularioPresente
         this.acaoDoBotaoSalvar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                thisObject.sairPainel();
-                thisObject.getTelaPresenter().vaParaMenuAdministrador();
+                PainelFormularioCommand.salvarAlteracoesUsuario(thisObject);
             }
         };
 
@@ -32,6 +35,10 @@ public class PainelFormularioEditarAdmPresenter extends PainelFormularioPresente
                 thisObject.getTelaPresenter().vaParaMenuAdministrador();
             }
         };
+    }
+
+    public UsuarioModel getUsuario() {
+        return this.usuario;
     }
 
     @Override
@@ -48,7 +55,16 @@ public class PainelFormularioEditarAdmPresenter extends PainelFormularioPresente
         this.getTelaPresenter().getTela().setPainelMeio(this.getPainel());
     }
 
-    private void sairPainel() {
+    public void setUsuario(UsuarioModel usuario) {
+        this.getEstado().getPainel().getCampoUsuario().setText(usuario.getUsuario());
+        this.getEstado().getPainel().getCampoSenha().setText(usuario.getSenha());
+        this.getEstado().getPainel().getCampoNome().setText(usuario.getNome());
+
+        this.usuario = usuario;
+    }
+
+    public void sairPainel() {
+        this.usuario = null;
         this.getEstado().setAcaoDoBotaoSalvar(null);
         this.getEstado().setAcaoDoBotaoVoltar(null);
     }
